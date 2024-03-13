@@ -1,4 +1,4 @@
-#!bin/sh
+#!/bin/sh
 
 # need to check if given params == 2
 if [ $# -ne 2 ]; then

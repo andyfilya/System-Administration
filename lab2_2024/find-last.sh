@@ -1,4 +1,4 @@
-#!bin/sh
+#!/bin/sh
 
 source_directory=$1
 period=$2 #per seconds
