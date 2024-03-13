@@ -1,15 +1,22 @@
 #!bin/sh
 
-directory="$1"
-format="$2"
+in="$1"
+out="$2"
+format="$3"
 
-if [ ! -d "$directory" ]; then
-  echo "$directory - is not a directory..."
+if [ ! -d "$in" ]; then
+  echo "$in - is not a directory..."
   exit(1)
 fi
 
-for f in "$directory"/*; do
-  if [[ $(echo "$f" | tr '[:upper:]' '[:lower:]') == *.$format ]]; then
-    echo $f
+if [ ! -d "$out" ]; then
+  echo "$out - is not a directory..."
+  mkdir "$out"
+fi
+
+for f in "$in"/*; do
+  file_type=$(file -b "$f")
+  if [ $file_type == $format ]; then 
+    mv "$f" "$out"
   fi
 done;
